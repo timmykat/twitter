@@ -79,8 +79,14 @@ module Twitter
       # @param options [Hash]
       # @return [Object]
       def object_from_response(klass, request_method, path, options={})
+        Rails.logger.info "DEBUG TWITTER>>>>>"
+        Rails.logger.info request_method
+        Rails.logger.info request_method.to_sym
         response = send(request_method.to_sym, path, options)
-        klass.from_response(response)
+        Rails.logger.info response.to_yaml
+        res = klass.from_response(response)
+        Rails.logger.info res.yaml
+        Rails.logger.info "<<<<<DEBUG TWITTER"
       end
 
       # @param collection_name [Symbol]
