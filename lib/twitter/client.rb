@@ -98,13 +98,13 @@ module Twitter
         end
       else
         Proc.new do |request|
-          request.headers[:authorization] = oauth_auth_header(method, path, signature_params).to_s
+          request.headers[:authorization] = oauth_auth_header(method, path, params).to_s
         end
       end
     end
 
     def request(method, path, params={}, signature_params=params)
-      request_setup = request_setup(method, path, params)
+      request_setup = request_setup(method, path, signature_params)
       connection.send(method.to_sym, path, params, &request_setup).env
     rescue Faraday::Error::ClientError
       raise Twitter::Error::ClientError
