@@ -80,12 +80,11 @@ module Twitter
       # @return [Object]
       def object_from_response(klass, request_method, path, options={})
         Rails.logger.info "DEBUG TWITTER>>>>>"
+        Rails.logger.info options.to_yaml
         response = send(request_method.to_sym, path, options)
         Rails.logger.info "Request response:"
         Rails.logger.info response.to_yaml
         res = klass.from_response(response)
-        Rails.logger.info "Klass response:"
-        Rails.logger.info res.to_yaml
         Rails.logger.info "<<<<<DEBUG TWITTER"
       end
 
