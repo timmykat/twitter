@@ -98,7 +98,7 @@ module Twitter
         end
       else
         Proc.new do |request|
-          request.headers[:authorization] = oauth_auth_header(method, path, params).to_s
+          request.headers[:authorization] = oauth_auth_header(method, path, signature_params).to_s
         end
       end
     end
