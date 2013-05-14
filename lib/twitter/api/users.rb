@@ -285,6 +285,7 @@ module Twitter
       #     Twitter.user('sferik')
       #     Twitter.user(7505382)  # Same as above
       def user(*args)
+        binding.pry
         arguments = Twitter::API::Arguments.new(args)
         if user = arguments.pop
           merge_user!(arguments.options, user)
